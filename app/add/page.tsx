@@ -32,7 +32,6 @@ export default function Add() {
           setLoading(false)
         })
       }}>
-      {error && <Error error={error} />}
       <input type="text" placeholder="Title" ref={title} className="input input-bordered" />
       <input type="text" placeholder="Text" ref={text} className="input input-bordered" />
       <button className="btn btn-primary">Add</button>
