@@ -16,7 +16,7 @@ export async function GET(req: NextRequest, {params}: { params: { id: string } }
     const decoded = await decode(authHeader)
 
     const post = await Post.findById(params.id)
-    const user = await User.findById(decoded?.id as any)
+    const user = await User.findById(decoded?.id)
 
     if (!post) {return new Response("Post not found", {status: 404})}
 
