@@ -5,12 +5,12 @@ import {useRouter} from "next/navigation"
 import {useRef, useState} from "react"
 import {Loading} from "../components/loadingComp"
 import Nav from "../components/Nav"
+import {Error} from "../components/Error"
 
 export default function Add() {
   const title = useRef<HTMLInputElement>(null)
   const text = useRef<HTMLInputElement>(null)
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState("")
   const router = useRouter()
   return <>
     <Nav className={"mt-[0vh]"} />
@@ -25,15 +25,14 @@ export default function Add() {
           headers: {
             Authorization: `Bearer ${getCookie("token")}`
           }
-        }).then((res) => {
+        }).then(() => {
           alert("Post Added!")
           router.push("/profile")
-        }).catch((err) => {
-          setError(err.response.data)
         }).finally(() => {
           setLoading(false)
         })
       }}>
+      {error && <Error error={error} />}
       <input type="text" placeholder="Title" ref={title} className="input input-bordered" />
       <input type="text" placeholder="Text" ref={text} className="input input-bordered" />
       <button className="btn btn-primary">Add</button>

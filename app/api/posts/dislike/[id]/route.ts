@@ -3,7 +3,7 @@ import {NextRequest} from "next/server";
 import {Post} from "../../../models/Post";
 import {User} from "../../../models/User";
 
-export async function GET(req: NextRequest, {params}: { params: { id: String } }) {
+export async function GET(req: NextRequest, {params}: { params: { id: string } }) {
   try {
     const header = req.headers.get("Authorization")
     const authHeader = header?.split(' ')[1]
@@ -12,8 +12,8 @@ export async function GET(req: NextRequest, {params}: { params: { id: String } }
 
 
     console.log(params.id)
-    const id = params.id
-    const decoded:any = await decode(authHeader)
+    const id: string = params.id
+    const decoded = await decode(authHeader)
 
     const post = await Post.findById(params.id)
     const user = await User.findById(decoded.id)

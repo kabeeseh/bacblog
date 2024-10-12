@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import {bacblog} from "../init";
-import { User } from "./User";
 const postSchema = new mongoose.Schema({ 
   title: String,
   text: String,

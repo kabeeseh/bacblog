@@ -16,13 +16,13 @@ export  async function POST(req: Request) {
 
 		if (!user) return new Response("Username Not Found", { status: 404 })
 		
-		if (!compare(password, user.password as any)) return new Response("Incorrect Password", { status: 400 })
+		if (!compare(password, user.password as string)) return new Response("Incorrect Password", { status: 400 })
 
 		const token = sign({ id: user.id, username }, 'secret')
 
 		return Response.json(token)
-	}catch (error: any) {
-		return new Response(error, {status: 500})
+	}catch (error) {
+		return new Response(error as string, {status: 500})
 	}	
 
 }

@@ -1,6 +1,6 @@
 import {verify} from "jsonwebtoken"
 import { Post } from "../../models/Post"
-export async function GET(req: Request, {params}: { params: { id: String } }) {
+export async function GET(req: Request, {params}: { params: { id: string } }) {
   try {
     const authHeader = req.headers.get("Authorization")?.split(' ')[1]
 
@@ -11,7 +11,7 @@ export async function GET(req: Request, {params}: { params: { id: String } }) {
     if (!post) return new Response("Post not found", {status: 404})
 
     return Response.json(post)
-  }catch (error: any) {
-    return new Response(error, { status: 500 })
+  }catch (error) {
+    return new Response(error as string, { status: 500 })
   }
 }
