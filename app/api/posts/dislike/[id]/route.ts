@@ -1,4 +1,4 @@
-import {decode, verify} from "jsonwebtoken";
+import {decode, verify, JwtPayload} from "jsonwebtoken";
 import {NextRequest} from "next/server";
 import {Post} from "../../../models/Post";
 import {User} from "../../../models/User";
@@ -13,7 +13,7 @@ export async function GET(req: NextRequest, {params}: { params: { id: string } }
 
     console.log(params.id)
     const id: string = params.id
-    const decoded = await decode(authHeader)
+    const decoded = await decode(authHeader) as JwtPayload | null;
 
     const post = await Post.findById(params.id)
     const user = await User.findById(decoded?.id as any)
