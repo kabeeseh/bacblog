@@ -7,7 +7,7 @@ import {Loading} from "../components/loadingComp"
 import {useRouter} from "next/navigation"
 import {UserContext} from "../contexts/UserProvider"
 export default function Login() {
-  const { setUser } = useContext(UserContext)
+  const { setUser } = useContext(UserContext) || {}
   const [loading, setLoading] = useState<boolean>(false) 
   const [error, setError] = useState<String>("")
   const username = useRef<HTMLInputElement>(null)
