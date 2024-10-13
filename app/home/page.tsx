@@ -9,7 +9,7 @@ import {Error} from "../components/Error"
 import {UserContext} from "../contexts/UserProvider"
 import Nav from "../components/Nav"
 export default function Home() {
-  const { user } = useContext(UserContext)
+  const { user } = useContext(UserContext) || {}
   const [posts, setPosts] = useState<Post[]>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<String>("")
